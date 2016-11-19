@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class Display extends JFrame implements Runnable {
 
-	private int fps, width, height, current_fps;
+	private int width, height, current_fps;
 	private double fpsInv;
 	private String title;
 	private boolean isRunning = true;
@@ -31,7 +31,6 @@ public class Display extends JFrame implements Runnable {
 	 * Use -1 in order to have infinite refresh rate.
 	 */
 	public void setFps(int i) {
-		this.fps = i;
 		this.fpsInv = 1000 / i;
 	}
 
@@ -45,10 +44,6 @@ public class Display extends JFrame implements Runnable {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public int getFps() {
-		return this.fps;
 	}
 
 	public int getHeight() {

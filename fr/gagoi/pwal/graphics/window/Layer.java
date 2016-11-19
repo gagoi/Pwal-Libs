@@ -60,8 +60,8 @@ public class Layer {
 
 	public void render() {
 		Graphics g = img.getGraphics();
-		for (Iterator iterator = elements.iterator(); iterator.hasNext();) {
-			GraphicElement graphicElement = (GraphicElement) iterator.next();
+		for (Iterator<GraphicElement> iterator = elements.iterator(); iterator.hasNext();) {
+			GraphicElement graphicElement = iterator.next();
 			graphicElement.render(g);
 		}
 	}
