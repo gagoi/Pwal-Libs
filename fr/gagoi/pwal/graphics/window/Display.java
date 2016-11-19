@@ -83,4 +83,7 @@ public class Display extends JFrame implements Runnable {
 		return canvas.getLayers();
 	}
 
+	public int getCurrentFps(){
+		return current_fps;
+	}
 }

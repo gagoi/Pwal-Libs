@@ -29,7 +29,6 @@ public class Application implements Runnable {
 				}
 				if (System.currentTimeMillis() >= timer + 1000) {
 					current_ups = tempUPS;
-					System.out.println(current_ups);
 					tempUPS = 0;
 					timer = System.currentTimeMillis();
 				}
@@ -53,6 +52,10 @@ public class Application implements Runnable {
 
 	public void remove(AppElement e) {
 		this.elements.remove(e);
+	}
+	
+	public int getCurrentUps(){
+		return current_ups;
 	}
 
 }
