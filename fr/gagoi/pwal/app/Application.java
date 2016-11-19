@@ -10,8 +10,9 @@ public class Application implements Runnable {
 
 	private ArrayList<AppElement> elements = new ArrayList<>();
 
-	public Application() {
-		new Thread(this, "").start();
+	public Application(String name, int ups) {
+		this.upsInv = 1000 / ups;
+		new Thread(this, name).start();
 	}
 
 	@Override
@@ -22,21 +23,36 @@ public class Application implements Runnable {
 			while (isRunning) {
 				long current_time = System.currentTimeMillis();
 				if (current_time >= start_time_UPS + upsInv) {
-					for (AppElement appElement : elements) {
-						if (tempUPS % appElement.getUpdateToSkip() == 0) {
-							appElement.update();
-						}
-					}
+					updateAll();
 					tempUPS++;
+					start_time_UPS = System.currentTimeMillis();
 				}
 				if (System.currentTimeMillis() >= timer + 1000) {
-					timer += 1000;
 					current_ups = tempUPS;
 					System.out.println(current_ups);
 					tempUPS = 0;
+					timer = System.currentTimeMillis();
 				}
 			}
 		}
+	}
+
+	public synchronized void updateAll() {
+		for (int i = 0; i < elements.size(); i++)
+			if (elements.get(i) != null)
+				elements.get(i).update();
+	}
+
+	public void add(AppElement e) {
+		this.elements.add(e);
+	}
+
+	public void remove(int i) {
+		this.elements.remove(i);
+	}
+
+	public void remove(AppElement e) {
+		this.elements.remove(e);
 	}
 
 }

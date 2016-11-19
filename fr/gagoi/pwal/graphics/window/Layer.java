@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Layer {
 
@@ -60,9 +59,17 @@ public class Layer {
 
 	public void render() {
 		Graphics g = img.getGraphics();
-		for (Iterator<GraphicElement> iterator = elements.iterator(); iterator.hasNext();) {
-			GraphicElement graphicElement = iterator.next();
-			graphicElement.render(g);
+		for (int i = 0; i < elements.size(); i++) {
+			elements.get(i).render(g);
+			
 		}
+	}
+
+	public void remove(int i) {
+		this.elements.remove(i);
+	}
+
+	public void remove(GraphicElement e) {
+		this.elements.remove(e);
 	}
 }
