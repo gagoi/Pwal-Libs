@@ -53,8 +53,8 @@ public class Application implements Runnable {
 	public void remove(AppElement e) {
 		this.elements.remove(e);
 	}
-	
-	public int getCurrentUps(){
+
+	public int getCurrentUps() {
 		return current_ups;
 	}
 
