@@ -37,25 +37,25 @@ public class Application implements Runnable {
 	}
 
 	public synchronized void updateAll() {
-		for (int i = 0; i < elements.size(); i++)
+		for (int i = 0; i < elements.size(); i++) {
 			if (elements.get(i) != null)
 				elements.get(i).update();
+			if (!elements.get(i).isRunning()) {
+				elements.remove(i);
+			}
+		}
 	}
 
 	public void add(AppElement e) {
 		this.elements.add(e);
 	}
 
-	public void remove(int i) {
-		this.elements.remove(i);
-	}
-
-	public void remove(AppElement e) {
-		this.elements.remove(e);
-	}
-
 	public int getCurrentUps() {
 		return current_ups;
+	}
+
+	public ArrayList<AppElement> getElements() {
+		return elements;
 	}
 
 }

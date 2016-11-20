@@ -22,4 +22,8 @@ public class Vec2D {
 		return val[i];
 	}
 
+	@Override
+	public String toString() {
+		return "Vec2D(" + getValue(0) + ";" + getValue(1) + ")";
+	}
 }

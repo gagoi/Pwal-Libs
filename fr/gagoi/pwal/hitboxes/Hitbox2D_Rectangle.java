@@ -81,4 +81,15 @@ public class Hitbox2D_Rectangle implements IHitbox {
 	public void moove() {
 	}
 
+	@Override
+	public boolean collide(IHitbox hitbox) {
+		for (int x = (int) getPos().getValue(0); x < getPos().getValue(0) + getSize().getValue(0); x++) {
+			for (int y = (int) getPos().getValue(1); y < getPos().getValue(1) + getSize().getValue(1); y++) {
+				if (hitbox.contain(new Vec2D(x, y)))
+					return true;
+			}
+		}
+		return false;
+	}
+
 }

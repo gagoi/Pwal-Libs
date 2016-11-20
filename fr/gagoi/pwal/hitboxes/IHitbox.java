@@ -21,4 +21,6 @@ public interface IHitbox {
 	public Vec2D getSpeed();
 	
 	public void moove();
+
+	public boolean collide(IHitbox hitbox);
 }

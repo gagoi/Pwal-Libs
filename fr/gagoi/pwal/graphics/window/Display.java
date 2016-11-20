@@ -22,6 +22,7 @@ public class Display extends JFrame implements Runnable {
 		add(canvas);
 		setSize(width, height);
 		setResizable(false);
+		requestFocus();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		new Thread(this).start();
