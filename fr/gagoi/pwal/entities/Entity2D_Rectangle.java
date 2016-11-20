@@ -7,7 +7,7 @@ public class Entity2D_Rectangle extends EntityBase {
 
 	public Entity2D_Rectangle(String name, Vec2D pos, Vec2D size, Vec2D speed, boolean isHard) {
 		super(name);
-		this.hitbox = new Hitbox2D_Rectangle();
+		this.hitbox = new Hitbox2D_Rectangle(pos, size, speed);
 	}
 
 }
