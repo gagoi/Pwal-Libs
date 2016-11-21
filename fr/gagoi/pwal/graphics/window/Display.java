@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import fr.gagoi.pwal.inputs.Keyboard;
+
 @SuppressWarnings("serial")
 public class Display extends JFrame implements Runnable {
 
@@ -12,6 +14,7 @@ public class Display extends JFrame implements Runnable {
 	private String title;
 	private boolean isRunning = true;
 	private AppCanvas canvas;
+	private Keyboard keyboard = new Keyboard();
 
 	public Display(String title, int width, int height, int fps) {
 		setTitle(title);
@@ -20,9 +23,10 @@ public class Display extends JFrame implements Runnable {
 		setHeight(height);
 		canvas = new AppCanvas(width, height);
 		add(canvas);
+		canvas.requestFocus();
+		canvas.addKeyListener(keyboard);
 		setSize(width, height);
 		setResizable(false);
-		requestFocus();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		new Thread(this).start();
@@ -86,5 +90,9 @@ public class Display extends JFrame implements Runnable {
 
 	public int getCurrentFps(){
 		return current_fps;
+	}
+	
+	public Keyboard getKeyboard(){
+		return this.keyboard;
 	}
 }

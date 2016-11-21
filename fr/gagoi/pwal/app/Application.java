@@ -40,9 +40,8 @@ public class Application implements Runnable {
 		for (int i = 0; i < elements.size(); i++) {
 			if (elements.get(i) != null)
 				elements.get(i).update();
-			if (!elements.get(i).isRunning()) {
+			if (!elements.get(i).isRunning())
 				elements.remove(i);
-			}
 		}
 	}
 
