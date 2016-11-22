@@ -32,6 +32,11 @@ public class Application implements Runnable {
 					tempUPS = 0;
 					timer = System.currentTimeMillis();
 				}
+				try {
+					Thread.sleep((long) upsInv);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

@@ -80,6 +80,11 @@ public class Display extends JFrame implements Runnable {
 					current_fps = tempFPS;
 					tempFPS = 0;
 				}
+				try {
+					Thread.sleep((long) fpsInv);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

@@ -2,6 +2,7 @@ package fr.gagoi.pwal.graphics.window;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ public class Layer {
 		this.posY = posY;
 		this.width = d.getWidth();
 		this.height = d.getHeight();
-		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		img = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(width, height, BufferedImage.TYPE_INT_ARGB);
 	}
 
 	public void add(GraphicElement e) {
