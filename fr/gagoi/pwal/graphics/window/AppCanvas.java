@@ -2,6 +2,7 @@ package fr.gagoi.pwal.graphics.window;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -18,8 +19,9 @@ public class AppCanvas extends Canvas {
 	}
 
 	public void render() {
-		if(imgApp == null) {
-			imgApp = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		if (imgApp == null) {
+			imgApp = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+					.getDefaultConfiguration().createCompatibleImage(width, height, BufferedImage.TYPE_INT_RGB);
 			return;
 		}
 		Graphics g = imgApp.getGraphics();
@@ -29,6 +31,7 @@ public class AppCanvas extends Canvas {
 			layer.render();
 			g.drawImage(layer.getImage(), layer.getPosX(), layer.getPosY(), layer.getWidth(), layer.getHeight(), null);
 		}
+		g.dispose();
 		getGraphics().drawImage(imgApp, 0, 0, null);
 	}
 

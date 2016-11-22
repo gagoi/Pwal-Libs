@@ -2,6 +2,7 @@ package fr.gagoi.pwal.graphics.window;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -53,8 +54,8 @@ public class Layer {
 	}
 
 	public void clear() {
-		Graphics g = img.getGraphics();
-		g.setColor(new Color(0, true));
+		Graphics2D g = (Graphics2D) img.getGraphics();
+		g.setBackground(new Color(0, true));
 		g.clearRect(0, 0, width, height);
 	}
 
