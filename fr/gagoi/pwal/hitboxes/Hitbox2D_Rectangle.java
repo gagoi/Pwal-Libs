@@ -9,7 +9,7 @@ public class Hitbox2D_Rectangle implements IHitbox {
 	private Vec2D size;
 	private Vec2D speed;
 
-	private boolean isHard;
+	private boolean[] isHard = new boolean[4];
 
 	public Hitbox2D_Rectangle() {
 		this.pos = new Vec2D();
@@ -17,10 +17,21 @@ public class Hitbox2D_Rectangle implements IHitbox {
 		this.speed = new Vec2D();
 	}
 
-	public Hitbox2D_Rectangle(Vec2D pos, Vec2D size, Vec2D speed) {
+	public Hitbox2D_Rectangle(Vec2D pos, Vec2D size, Vec2D speed, boolean isHard) {
 		this.pos = pos;
 		this.size = size;
 		this.speed = speed;
+		this.isHard[0] = isHard;
+		this.isHard[1] = isHard;
+		this.isHard[2] = isHard;
+		this.isHard[3] = isHard;
+	}
+
+	public Hitbox2D_Rectangle(Vec2D pos, Vec2D size, Vec2D speed, boolean[] isHardFromSide) {
+		this.pos = pos;
+		this.size = size;
+		this.speed = speed;
+		this.isHard = isHardFromSide;
 	}
 
 	@Override
@@ -59,7 +70,7 @@ public class Hitbox2D_Rectangle implements IHitbox {
 	}
 
 	@Override
-	public boolean isHard() {
+	public boolean[] isHard() {
 		return isHard;
 	}
 

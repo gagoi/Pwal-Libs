@@ -1,12 +1,16 @@
 package fr.gagoi.pwal.app;
 
 import java.util.ArrayList;
+import java.util.Vector;
+
+import fr.gagoi.pwal.entities.EntityBase;
 
 public class Application implements Runnable {
 
 	private boolean isRunning = true;
 	private int current_ups;
 	private double upsInv;
+	private Vector<EntityBase> entities = new Vector<>();
 
 	private ArrayList<AppElement> elements = new ArrayList<>();
 
@@ -45,8 +49,14 @@ public class Application implements Runnable {
 		for (int i = 0; i < elements.size(); i++) {
 			if (elements.get(i) != null)
 				elements.get(i).update();
-			if (!elements.get(i).isRunning())
+			if (elements != null && !elements.get(i).isRunning())
 				elements.remove(i);
+		}
+	}
+	
+	public void mooveEntities(){
+		for (EntityBase entity : entities) {
+			entity.getHitbox().moove();
 		}
 	}
 
@@ -62,4 +72,11 @@ public class Application implements Runnable {
 		return elements;
 	}
 
+	public Vector<EntityBase> getEntities(){
+		return this.entities;
+	}
+	
+	public void setEntities(Vector<EntityBase> entities){
+		this.entities = entities;
+	}
 }
