@@ -69,22 +69,25 @@ public class Display extends JFrame implements Runnable {
 		long timer = System.currentTimeMillis(), start_time_FPS = System.currentTimeMillis();
 		int tempFPS = 0;
 		while (isRunning) {
-			long current_time = System.currentTimeMillis();
-			if (current_time >= start_time_FPS + fpsInv) {
-				canvas.render();
-				tempFPS++;
-				start_time_FPS = System.currentTimeMillis();
-			}
 			if (System.currentTimeMillis() >= timer + 1000) {
-				timer += 1000;
+				timer = System.currentTimeMillis();
 				current_fps = tempFPS;
 				tempFPS = 0;
 			}
-			try {
-				Thread.sleep((long) fpsInv);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			if (fpsInv > 0) {
+				long sTime = System.currentTimeMillis();
+				if (System.currentTimeMillis() >= start_time_FPS + fpsInv) {
+					canvas.render();
+					tempFPS++;
+					start_time_FPS = System.currentTimeMillis();
+				}
+				try {
+					Thread.sleep((long) (System.currentTimeMillis() - sTime + fpsInv));
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			} else
+				canvas.render();
 		}
 	}
 
